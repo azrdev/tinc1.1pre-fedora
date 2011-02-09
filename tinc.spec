@@ -1,6 +1,6 @@
 Name:           tinc
 Version:        1.0.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A virtual private network daemon
 
 Group:          Applications/Internet
@@ -64,6 +64,9 @@ fi
 
 
 %changelog
+* Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.12-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Mon Mar 15 2010 Fabian Affolter <fabian@bernewireless.net> - 1.0.12-1
 - Updated to new upstream version 1.0.12
 
