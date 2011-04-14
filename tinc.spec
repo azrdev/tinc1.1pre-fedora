@@ -1,6 +1,6 @@
 Name:           tinc
-Version:        1.0.12
-Release:        2%{?dist}
+Version:        1.0.13
+Release:        1%{?dist}
 Summary:        A virtual private network daemon
 
 Group:          Applications/Internet
@@ -10,7 +10,6 @@ Source0:        http://www.tinc-vpn.org/packages/%{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl-devel
-BuildRequires:  lzo-devel
 
 Requires(post):  info
 Requires(preun): info
@@ -64,6 +63,10 @@ fi
 
 
 %changelog
+* Wed Apr 13 2011 Fabian Affolter <fabian@bernewireless.net> - 1.0.13-1
+- Updated BR
+- Updated to new upstream version 1.0.13
+
 * Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.12-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
