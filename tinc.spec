@@ -64,11 +64,15 @@ fi
 
 
 %changelog
+<<<<<<< HEAD
 * Tue Jun 26 2012 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.19-1
 - Updated to new upstream version 1.0.16
 
 * Sat Mar 31 2012 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.18-1
 - Updated to new upstream version 1.0.18
+
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.16-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
 * Fri Sep 16 2011 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.16-1
 - Updated to new upstream version 1.0.16
