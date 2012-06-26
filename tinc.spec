@@ -64,7 +64,6 @@ fi
 
 
 %changelog
-<<<<<<< HEAD
 * Tue Jun 26 2012 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.19-1
 - Updated to new upstream version 1.0.16
 
