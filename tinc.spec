@@ -1,5 +1,5 @@
 Name:           tinc
-Version:        1.0.16
+Version:        1.0.19
 Release:        1%{?dist}
 Summary:        A virtual private network daemon
 
@@ -64,6 +64,12 @@ fi
 
 
 %changelog
+* Tue Jun 26 2012 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.19-1
+- Updated to new upstream version 1.0.16
+
+* Sat Mar 31 2012 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.18-1
+- Updated to new upstream version 1.0.18
+
 * Fri Sep 16 2011 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.16-1
 - Updated to new upstream version 1.0.16
 
