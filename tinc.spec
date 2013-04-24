@@ -1,20 +1,17 @@
 Name:           tinc
-Version:        1.0.19
-Release:        3%{?dist}
+Version:        1.0.21
+Release:        1%{?dist}
 Summary:        A virtual private network daemon
 
-Group:          Applications/Internet
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 Source0:        http://www.tinc-vpn.org/packages/%{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl-devel
 BuildRequires:  lzo-devel
 
 Requires(post):  info
 Requires(preun): info
-
 
 %description
 tinc is a Virtual Private Network (VPN) daemon that uses tunnelling
@@ -25,45 +22,35 @@ existing software. This tunnelling allows VPN sites to share
 information with each other over the Internet without exposing any
 information to others.
 
-
 %prep
 %setup -q
-
 
 %build
 %configure
 make %{?_smp_mflags}
 
-
 %install
-rm -rf %{buildroot}
 make install DESTDIR=%{buildroot} INSTALL="install -p"
 rm -f %{buildroot}%{_infodir}/dir
 
-
-%clean
-rm -rf %{buildroot}
-
-
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir || :
-
 
 %preun
 if [ $1 = 0 ] ; then
 /sbin/install-info --delete %{_infodir}/%{name}.info %{_infodir}/dir || :
 fi
 
-
 %files
-%defattr(-,root,root,-)
 %doc AUTHORS COPYING COPYING.README NEWS README THANKS doc/sample* doc/*.tex
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
 %{_sbindir}/%{name}d
 
-
 %changelog
+* Wed Apr 24 2013 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.21-1
+- Updated to new upstream version 1.0.21
+
 * Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.19-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
