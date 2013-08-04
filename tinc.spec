@@ -1,6 +1,6 @@
 Name:           tinc
 Version:        1.0.21
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A virtual private network daemon
 
 License:        GPLv2+
@@ -48,6 +48,9 @@ fi
 %{_sbindir}/%{name}d
 
 %changelog
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.21-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Wed Apr 24 2013 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.21-1
 - Updated to new upstream version 1.0.21
 
