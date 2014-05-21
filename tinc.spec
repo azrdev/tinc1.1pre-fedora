@@ -1,5 +1,5 @@
 Name:           tinc
-Version:        1.0.23
+Version:        1.0.24
 Release:        1%{?dist}
 Summary:        A virtual private network daemon
 
@@ -48,17 +48,20 @@ fi
 %{_sbindir}/%{name}d
 
 %changelog
+* Wed May 21 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.24-1
+- Update to new upstream version 1.0.24
+
 * Tue Oct 29 2013 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.23-1
-- Updated to new upstream version 1.0.23
+- Update to new upstream version 1.0.23
 
 * Mon Aug 26 2013 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.22-1
-- Updated to new upstream version 1.0.22
+- Update to new upstream version 1.0.22
 
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.21-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
 * Wed Apr 24 2013 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.21-1
-- Updated to new upstream version 1.0.21
+- Update to new upstream version 1.0.21
 
 * Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.19-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
@@ -67,32 +70,32 @@ fi
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
 * Tue Jun 26 2012 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.19-1
-- Updated to new upstream version 1.0.16
+- Update to new upstream version 1.0.16
 
 * Sat Mar 31 2012 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.18-1
-- Updated to new upstream version 1.0.18
+- Update to new upstream version 1.0.18
 
 * Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.16-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
 * Fri Sep 16 2011 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.16-1
-- Updated to new upstream version 1.0.16
+- Update to new upstream version 1.0.16
 
 * Wed Apr 13 2011 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.13-1
-- Updated to new upstream version 1.0.13
+- Update to new upstream version 1.0.13
 
 * Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.12-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
 * Mon Mar 15 2010 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.12-1
-- Updated to new upstream version 1.0.12
+- Update to new upstream version 1.0.12
 
 * Mon Dec 07 2009 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.11-1
-- Updated to new upstream version 1.0.11
+- Update to new upstream version 1.0.11
 
 * Thu Oct 22 2009 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.10-1
 - Removed translation stuff
-- Updated to new upstream version 1.0.10
+- Update to new upstream version 1.0.10
 
 * Mon Dec 29 2008 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.9-1
 - Initial package for Fedora
