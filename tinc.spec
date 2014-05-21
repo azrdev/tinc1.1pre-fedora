@@ -1,17 +1,23 @@
 Name:           tinc
 Version:        1.0.24
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A virtual private network daemon
 
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 Source0:        http://www.tinc-vpn.org/packages/%{name}-%{version}.tar.gz
+Source1:        tincd.service
 
 BuildRequires:  openssl-devel
 BuildRequires:  lzo-devel
+BuildRequires:  systemd
+BuildRequires:  systemd-units
 
-Requires(post):  info
-Requires(preun): info
+Requires(post):   info
+Requires(post):   systemd
+Requires(preun):  info
+Requires(preun):  systemd
+Requires(postun): systemd
 
 %description
 tinc is a Virtual Private Network (VPN) daemon that uses tunnelling
@@ -31,23 +37,33 @@ make %{?_smp_mflags}
 
 %install
 make install DESTDIR=%{buildroot} INSTALL="install -p"
+install -Dp -m 644 %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}d.service
 rm -f %{buildroot}%{_infodir}/dir
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir || :
+%systemd_post %{name}d.service
 
 %preun
 if [ $1 = 0 ] ; then
 /sbin/install-info --delete %{_infodir}/%{name}.info %{_infodir}/dir || :
 fi
+%systemd_preun %{name}d.service
+
+%postun
+%systemd_postun_with_restart %{name}d.service
 
 %files
 %doc AUTHORS COPYING COPYING.README NEWS README THANKS doc/sample* doc/*.tex
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
 %{_sbindir}/%{name}d
+%{_unitdir}/%{name}d.service
 
 %changelog
+* Wed May 21 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.24-2
+- Migration to systemd (rhbz#1078237)
+
 * Wed May 21 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.24-1
 - Update to new upstream version 1.0.24
 
