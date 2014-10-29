@@ -1,6 +1,6 @@
 Name:           tinc
 Version:        1.0.24
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A virtual private network daemon
 
 License:        GPLv2+
@@ -61,6 +61,9 @@ fi
 %{_unitdir}/%{name}d@.service
 
 %changelog
+* Wed Oct 29 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.24-6
+- Fix service file (rhbz#1155666)
+
 * Mon Aug 18 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.24-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
