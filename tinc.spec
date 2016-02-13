@@ -1,11 +1,14 @@
 Name:           tinc
-Version:        1.0.26
-Release:        2%{?dist}
+Version:        1.1pre11
+Release:        git%{shortcommit0}%{?dist}
 Summary:        A virtual private network daemon
+
+%global commit0 d8ca00fe40ff4b6d87e7e64c273f536fab462356
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
-Source0:        http://www.tinc-vpn.org/packages/%{name}-%{version}.tar.gz
+Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Source1:        %{name}d@.service
 
 BuildRequires:  openssl-devel
