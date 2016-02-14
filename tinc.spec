@@ -1,6 +1,6 @@
 Name:           tinc
 Version:        1.1pre11
-Release:        git%{shortcommit0}%{?dist}
+Release:        20160213git%{shortcommit0}%{?dist}
 Summary:        A virtual private network daemon
 
 %global commit0 d8ca00fe40ff4b6d87e7e64c273f536fab462356
@@ -11,10 +11,21 @@ URL:            http://www.tinc-vpn.org/
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Source1:        %{name}d@.service
 
+BuildRequires:  autoconf
+BuildRequires:  automake
+
 BuildRequires:  openssl-devel
 BuildRequires:  lzo-devel
 BuildRequires:  systemd
 BuildRequires:  systemd-units
+BuildRequires:  readline-devel
+BuildRequires:  ncurses-devel
+BuildRequires:  texinfo
+
+Requires:  openssl
+Requires:  lzo
+Requires:  readline
+Requires:  ncurses-libs
 
 Requires(post):   info
 Requires(post):   systemd
@@ -32,9 +43,10 @@ information with each other over the Internet without exposing any
 information to others.
 
 %prep
-%setup -q
+%autosetup -n %{name}-%{commit0}
 
 %build
+autoreconf -fsi
 %configure
 make %{?_smp_mflags}
 
@@ -60,10 +72,18 @@ fi
 %doc AUTHORS COPYING COPYING.README NEWS README THANKS doc/sample* doc/*.tex
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
+%{_bindir}/%{name}-gui
+%{_sbindir}/%{name}
 %{_sbindir}/%{name}d
+%{_sbindir}/sptps_keypair
+%{_sbindir}/sptps_speed
+%{_sbindir}/sptps_test
 %{_unitdir}/%{name}d@.service
 
 %changelog
+* Sun Feb 14 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1pre11-20160213gitd8ca00fe
+- Update to git branch 1.1 HEAD
+
 * Fri Feb 05 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.26-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
