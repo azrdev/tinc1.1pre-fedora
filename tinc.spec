@@ -1,6 +1,6 @@
 Name:           tinc
 Version:        1.1pre11
-Release:        20160213git%{shortcommit0}%{?dist}
+Release:        3.20160213git%{shortcommit0}%{?dist}
 Summary:        A virtual private network daemon
 
 %global commit0 d8ca00fe40ff4b6d87e7e64c273f536fab462356
@@ -81,6 +81,10 @@ fi
 %{_unitdir}/%{name}d@.service
 
 %changelog
+* Mon Feb 15 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1pre11-3.20160213gitd8ca00fe
+- Fix Release number
+- Fix systemd unit script (--kill does not exist anymore, add reload)
+
 * Sun Feb 14 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1pre11-20160213gitd8ca00fe
 - Update to git branch 1.1 HEAD
 

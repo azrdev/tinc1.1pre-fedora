@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=forking
 Restart=on-failure
-ExecStart=/usr/sbin/tincd -n %i
-ExecStop=/usr/sbin/tincd -n %i -k
+ExecStart=/usr/sbin/tincd --net %i
+ExecReload=/usr/sbin/tinc --net %i reload
 
 [Install]
 WantedBy=multi-user.target
