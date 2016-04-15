@@ -4,11 +4,11 @@ Summary:        A virtual private network daemon
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 
-%global commit0 7f749c7e75c08549d7ce43838622624a8093de85
+%global commit0 a31e1f03c4eff16403178695d971a0838996ba2e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.6.20160412git%{shortcommit0}%{?dist}
+Release:        0.7.20160415git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Source1:        %{name}d@.service
 
