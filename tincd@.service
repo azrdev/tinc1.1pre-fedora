@@ -6,7 +6,7 @@ After=network.target
 Type=forking
 Restart=on-failure
 ExecStart=/usr/sbin/tincd -n %i
-ExecStop=/usr/sbin/tincd -n %i -k
+KillSignal=SIGTERM
 
 [Install]
 WantedBy=multi-user.target
