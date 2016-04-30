@@ -6,7 +6,6 @@ Summary:        A virtual private network daemon
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 Source0:        http://www.tinc-vpn.org/packages/%{name}-%{version}.tar.gz
-Source1:        %{name}d@.service
 
 BuildRequires:  openssl-devel
 BuildRequires:  lzo-devel
@@ -42,27 +41,29 @@ rm -f %{buildroot}%{_infodir}/dir
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir || :
-%systemd_post %{name}d@.service
+%systemd_post %{name}@.service
 
 %preun
 if [ $1 = 0 ] ; then
 /sbin/install-info --delete %{_infodir}/%{name}.info %{_infodir}/dir || :
 fi
-%systemd_preun %{name}d@.service
+%systemd_preun %{name}@.service
 
 %postun
-%systemd_postun_with_restart %{name}d@.service
+%systemd_postun_with_restart %{name}@.service
 
 %files
 %doc AUTHORS COPYING.README NEWS README THANKS doc/sample* doc/*.tex
 %license COPYING
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
-%{_sbindir}/%{name}d
-%{_unitdir}/%{name}d@.service
+%{_sbindir}/%{name}
+%{_unitdir}/%{name}@.service
 
 %changelog
+
 * Sat Apr 30 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.28-1
+- Use upstream service units
 - Update to new upstream version 1.0.28
 
 * Fri Feb 05 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.26-2
