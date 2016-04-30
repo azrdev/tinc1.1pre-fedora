@@ -1,5 +1,5 @@
 Name:           tinc
-Version:        1.0.26
+Version:        1.0.28
 Release:        1%{?dist}
 Summary:        A virtual private network daemon
 
@@ -54,13 +54,17 @@ fi
 %systemd_postun_with_restart %{name}d@.service
 
 %files
-%doc AUTHORS COPYING COPYING.README NEWS README THANKS doc/sample* doc/*.tex
+%doc AUTHORS COPYING.README NEWS README THANKS doc/sample* doc/*.tex
+%license COPYING
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
 %{_sbindir}/%{name}d
 %{_unitdir}/%{name}d@.service
 
 %changelog
+* Sat Apr 30 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.28-1
+- Update to new upstream version 1.0.28
+
 * Fri Jan 29 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.26-1
 - Update to new upstream version 1.0.26
 
