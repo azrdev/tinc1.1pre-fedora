@@ -56,11 +56,10 @@ fi
 %license COPYING
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
-%{_sbindir}/%{name}
-%{_unitdir}/%{name}@.service
+%{_sbindir}/%{name}d
+%{_unitdir}/%{name}*.service
 
 %changelog
-
 * Sat Apr 30 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.28-1
 - Use upstream service units
 - Update to new upstream version 1.0.28
