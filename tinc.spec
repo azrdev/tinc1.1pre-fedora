@@ -36,7 +36,6 @@ make %{?_smp_mflags}
 
 %install
 make install DESTDIR=%{buildroot} INSTALL="install -p"
-install -Dp -m 644 %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}d@.service
 rm -f %{buildroot}%{_infodir}/dir
 
 %post
