@@ -4,13 +4,15 @@ Summary:        A virtual private network daemon
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 
-%global commit0 5a7c6546a46bdcc97cf73a9aef206d2a83bb1eb4
+%global commit0 3f6c663a06aac728912c4e47cbc2dc4343a3798c
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.11.20160424git%{shortcommit0}%{?dist}
+Release:        0.12.20160501git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Source1:        %{name}d@.service
+# TODO: systemd unit should be upstream now
+# TODO: firewalld config file
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -82,6 +84,9 @@ fi
 %{_unitdir}/%{name}d@.service
 
 %changelog
+* Sun May 01 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.12.20160501git3f6c663
+- Staying to git HEAD, for builds of pre-releases only see https://copr.fedorainfracloud.org/coprs/azrdev/tinc-prerelease/
+
 * Mon Feb 15 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1pre11-3.20160213gitd8ca00fe
 - Fix Release number
 - Fix systemd unit script (--kill does not exist anymore, add reload)
