@@ -4,11 +4,11 @@ Summary:        A virtual private network daemon
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 
-%global commit0 3f6c663a06aac728912c4e47cbc2dc4343a3798c
+%global commit0 0cf943753ab16704c818bebe74b4e7ea96399b05
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.12.20160501git%{shortcommit0}%{?dist}
+Release:        0.13.20160517git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Source1:        %{name}d@.service
 # TODO: systemd unit should be upstream now
