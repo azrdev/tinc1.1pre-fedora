@@ -10,8 +10,6 @@ URL:            http://www.tinc-vpn.org/
 Epoch:          1
 Release:        0.13.20160517git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
-Source1:        %{name}d@.service
-# TODO: systemd unit should be upstream now
 # TODO: firewalld config file
 
 BuildRequires:  autoconf
@@ -55,24 +53,24 @@ make %{?_smp_mflags}
 
 %install
 make install DESTDIR=%{buildroot} INSTALL="install -p"
-install -Dp -m 644 %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}d@.service
 rm -f %{buildroot}%{_infodir}/dir
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir || :
-%systemd_post %{name}d@.service
+%systemd_post %{name}@.service
 
 %preun
 if [ $1 = 0 ] ; then
 /sbin/install-info --delete %{_infodir}/%{name}.info %{_infodir}/dir || :
 fi
-%systemd_preun %{name}d@.service
+%systemd_preun %{name}@.service
 
 %postun
-%systemd_postun_with_restart %{name}d@.service
+%systemd_postun_with_restart %{name}@.service
 
 %files
-%doc AUTHORS COPYING COPYING.README NEWS README THANKS doc/sample* doc/*.tex
+%doc AUTHORS COPYING.README NEWS README THANKS doc/sample* doc/*.tex
+%license COPYING
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
 %{_bindir}/%{name}-gui
@@ -81,7 +79,7 @@ fi
 %{_sbindir}/sptps_keypair
 %{_sbindir}/sptps_speed
 %{_sbindir}/sptps_test
-%{_unitdir}/%{name}d@.service
+%{_unitdir}/%{name}*.service
 
 %changelog
 * Sun May 01 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.12.20160501git3f6c663
@@ -93,6 +91,10 @@ fi
 
 * Sun Feb 14 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1pre11-20160213gitd8ca00fe
 - Update to git branch 1.1 HEAD
+
+* Sat Apr 30 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.28-1
+- Use upstream service units
+- Update to new upstream version 1.0.28
 
 * Fri Feb 05 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.26-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
