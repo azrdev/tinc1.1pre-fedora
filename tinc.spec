@@ -8,9 +8,9 @@ URL:            http://www.tinc-vpn.org/
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.13.20160517git%{shortcommit0}%{?dist}
+Release:        0.14.20160517git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
-# TODO: firewalld config file
+Source1:        %{name}-firewalld.xml
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -48,16 +48,18 @@ information to others.
 
 %build
 autoreconf -fsi
-%configure
+%configure --with-systemd=%{_unitdir}
 make %{?_smp_mflags}
 
 %install
 make install DESTDIR=%{buildroot} INSTALL="install -p"
 rm -f %{buildroot}%{_infodir}/dir
+install -D -m644 %{SOURCE1} -t %{buildroot}%{_prefix}/lib/firewalld/services/tinc.xml
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir || :
 %systemd_post %{name}@.service
+%firewalld_reload
 
 %preun
 if [ $1 = 0 ] ; then
@@ -67,6 +69,7 @@ fi
 
 %postun
 %systemd_postun_with_restart %{name}@.service
+%firewalld_reload
 
 %files
 %doc AUTHORS COPYING.README NEWS README THANKS doc/sample* doc/*.tex
@@ -80,10 +83,18 @@ fi
 %{_sbindir}/sptps_speed
 %{_sbindir}/sptps_test
 %{_unitdir}/%{name}*.service
+%{_prefix}/lib/firewalld/services/tinc.xml
 
 %changelog
-* Sun May 01 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.12.20160501git3f6c663
+* Tue May 17 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.14.20160501git3f6c663
+- Add firewalld service file
+
+* Sun May 01 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.11.20160501git3f6c663
 - Staying to git HEAD, for builds of pre-releases only see https://copr.fedorainfracloud.org/coprs/azrdev/tinc-prerelease/
+
+* Sat Apr 30 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.28-1
+- Use upstream service units
+- Update to new upstream version 1.0.28
 
 * Mon Feb 15 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1pre11-3.20160213gitd8ca00fe
 - Fix Release number
@@ -91,10 +102,6 @@ fi
 
 * Sun Feb 14 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1pre11-20160213gitd8ca00fe
 - Update to git branch 1.1 HEAD
-
-* Sat Apr 30 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.28-1
-- Use upstream service units
-- Update to new upstream version 1.0.28
 
 * Fri Feb 05 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.26-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
