@@ -4,13 +4,12 @@ Summary:        A virtual private network daemon
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 
-%global commit0 0cf943753ab16704c818bebe74b4e7ea96399b05
+%global commit0 5baecfd11be67bb80aab6c482e0b0ac98b267cca
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.14.20160517git%{shortcommit0}%{?dist}
+Release:        0.15.20160519git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
-Source1:        %{name}-firewalld.xml
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -54,12 +53,10 @@ make %{?_smp_mflags}
 %install
 make install DESTDIR=%{buildroot} INSTALL="install -p"
 rm -f %{buildroot}%{_infodir}/dir
-install -D -m644 %{SOURCE1} -t %{buildroot}%{_prefix}/lib/firewalld/services/tinc.xml
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir || :
 %systemd_post %{name}@.service
-%firewalld_reload
 
 %preun
 if [ $1 = 0 ] ; then
@@ -69,7 +66,6 @@ fi
 
 %postun
 %systemd_postun_with_restart %{name}@.service
-%firewalld_reload
 
 %files
 %doc AUTHORS COPYING.README NEWS README THANKS doc/sample* doc/*.tex
@@ -83,9 +79,12 @@ fi
 %{_sbindir}/sptps_speed
 %{_sbindir}/sptps_test
 %{_unitdir}/%{name}*.service
-%{_prefix}/lib/firewalld/services/tinc.xml
 
 %changelog
+* Thu May 19 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.15.20160501git3f6c663
+- Remove firewalld service file: Already provided by packet firewalld
+- Bump git commit (as always)
+
 * Tue May 17 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.14.20160501git3f6c663
 - Add firewalld service file
 
