@@ -1,5 +1,5 @@
 Name:           tinc
-Version:        1.0.28
+Version:        1.0.30
 Release:        1%{?dist}
 Summary:        A virtual private network daemon
 
@@ -60,6 +60,9 @@ fi
 %{_unitdir}/%{name}*.service
 
 %changelog
+* Mon Oct 31 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.30-1
+- Update to new upstream version 1.0.30
+
 * Sat Apr 30 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.28-1
 - Use upstream service units
 - Update to new upstream version 1.0.28
