@@ -1,12 +1,13 @@
 Name:           tinc
 Version:        1.0.33
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A virtual private network daemon
 
 License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 Source0:        http://www.tinc-vpn.org/packages/%{name}-%{version}.tar.gz
 
+BuildRequires:  gcc
 BuildRequires:  openssl-devel
 BuildRequires:  lzo-devel
 BuildRequires:  systemd
@@ -28,14 +29,14 @@ information with each other over the Internet without exposing any
 information to others.
 
 %prep
-%setup -q
+%autosetup
 
 %build
 %configure
-make %{?_smp_mflags}
+%make_build
 
 %install
-make install DESTDIR=%{buildroot} INSTALL="install -p"
+%make_install
 rm -f %{buildroot}%{_infodir}/dir
 
 %post
@@ -60,6 +61,9 @@ fi
 %{_unitdir}/%{name}*.service
 
 %changelog
+* Thu Mar 08 2018 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.33-3
+- Fix BR
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.33-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
