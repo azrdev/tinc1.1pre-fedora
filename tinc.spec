@@ -9,7 +9,7 @@ Group:          Applications/Internet
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.58.20180617git%{shortcommit0}%{?dist}
+Release:        0.59.20180617git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
 BuildRequires:  autoconf
@@ -74,7 +74,6 @@ fi
 %license COPYING
 %{_mandir}/man*/%{name}*.*
 %{_infodir}/%{name}.info.gz
-%{_bindir}/%{name}-gui
 %{_sbindir}/%{name}
 %{_sbindir}/%{name}d
 %{_unitdir}/%{name}*.service
