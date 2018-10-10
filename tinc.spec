@@ -9,13 +9,14 @@ Group:          Applications/Internet
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.60.20181009git%{shortcommit0}%{?dist}
+Release:        0.61.20181009git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
 BuildRequires:  autoconf
 BuildRequires:  autoconf-archive
 BuildRequires:  automake
 
+BuildRequires:  gcc
 BuildRequires:  openssl-devel
 BuildRequires:  lzo-devel
 BuildRequires:  systemd
@@ -50,10 +51,10 @@ information to others.
 %build
 autoreconf -fsi
 %configure --with-systemd=%{_unitdir}
-make %{?_smp_mflags}
+%make_build
 
 %install
-make install DESTDIR=%{buildroot} INSTALL="install -p"
+%make_install
 rm -f %{buildroot}%{_infodir}/dir
 
 %post
@@ -80,6 +81,39 @@ fi
 %{_datarootdir}/bash-completion/completions/%{name}
 
 %changelog
+* Tue Oct  9 2018 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.60.20181009git45ad0de
+- Merge .spec changes from f29 into tinc1.1pre-branch
+
+* Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.33-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
+* Thu Mar 08 2018 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.33-3
+- Fix BR
+
+* Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.33-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
+* Sat Nov 04 2017 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.33-1
+- Update to new upstream version 1.0.33
+
+* Sat Sep 30 2017 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.32-1
+- Update to new upstream version 1.0.32
+
+* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.31-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
+* Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.31-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
+* Tue Mar 14 2017 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.31-1
+- Update to new upstream version 1.0.31
+
+* Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.30-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
+* Mon Oct 31 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1.0.30-1
+- Update to new upstream version 1.0.30
+
 * Thu May 19 2016 Jonathan Biegert <azrdev@qrdn.de> - 1.1-0.15.20160501git3f6c663
 - Remove firewalld service file: Already provided by packet firewalld
 - Bump git commit (as always)
