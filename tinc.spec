@@ -5,11 +5,11 @@ License:        GPLv2+
 URL:            http://www.tinc-vpn.org/
 Group:          Applications/Internet
 
-%global commit0 2b0aeec02d64bb4724da9ff1dbc19b7d35d7c904
+%global commit0 de7d5a03c2b956ab5753faf63b8148a279a71f29
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch:          1
-Release:        0.67.20190317git%{shortcommit0}%{?dist}
+Release:        0.68.20190718git%{shortcommit0}%{?dist}
 Source0:        https://github.com/gsliepen/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
 BuildRequires:  autoconf
